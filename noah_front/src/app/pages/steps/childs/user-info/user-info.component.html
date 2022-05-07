@@ -1,0 +1,82 @@
+<div class="row mt-2">
+  <div class="col-auto display-5">Cuenta de usuario</div>
+</div>
+
+<div class="row gy-2 mt-3">
+  <div class="col-6">
+    <input type="text" class="form-control" placeholder="Nombres" />
+  </div>
+  <div class="col-6">
+    <input type="text" class="form-control" placeholder="Apellidos" />
+  </div>
+  <div class="col-6">
+    <input type="password" class="form-control" placeholder="Contraseña" />
+  </div>
+  <div class="col-6">
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Confirmación Contraseña"
+    />
+  </div>
+</div>
+
+<div class="row my-3">
+  <div class="col-auto display-5">Dirección</div>
+</div>
+
+<div class="row gy-2 mt-3">
+  <div class="col-6">
+    <input type="text" class="form-control" placeholder="Dirección" />
+  </div>
+  <div class="col-6">
+    <input type="text" class="form-control" placeholder="Apartamento/Casa" />
+  </div>
+  <div class="col-6">
+    <input type="text" class="form-control" placeholder="Departamento" />
+  </div>
+  <div class="col-6">
+    <input type="text" class="form-control" placeholder="Ciudad" />
+  </div>
+</div>
+
+<div class="row my-3">
+  <div class="col-auto display-5">Pago</div>
+</div>
+
+<div class="row gy-2 mt-3">
+  <div class="col-12">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nombre de la tarjeta de crédito"
+    />
+  </div>
+  <div class="col-5">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Numero en la tarjeta"
+    />
+  </div>
+  <div class="col-4">
+    <input type="text" class="form-control" placeholder="Fecha exp" />
+  </div>
+  <div class="col-3">
+    <input type="text" class="form-control" placeholder="CVC" />
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-auto">
+    <button
+      class="btn btn-primary rounded-pill py-3 px-3 mt-5"
+      (click)="nextStep()"
+    >
+      <div class="display-inline">
+        Finalizar
+        <img src="assets/icons/paw.svg" width="20px" height="20px" />
+      </div>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+<form [formGroup]="petForm">
+  <div class="row g-3 align-items-start">
+    <div class="col-auto col-form-label text-primary">
+      {{ localClient.getActualPet().name }}
+    </div>
+    <div class="col-auto">
+      <select class="form-select" formControlName="hasMedicalCondition">
+        <option [value]="false" selected>
+          no tiene diagnósticada una condición médica
+        </option>
+        <option [value]="true">
+          tiene diagnósticada al menos una condición médica
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <ng-container *ngIf="localClient.getActualPet().hasMedicalCondition">
+    <div class="row g-3 align-items-start mt-2">
+      <div class="col-auto col-form-label">
+        Cuál es la principal condición diagnósticada en
+        <span class="text-primary">{{ localClient.getActualPet().name }}</span
+        >?
+      </div>
+
+      <div class="mt-4 container options-block row">
+        <ng-container
+          *ngFor="let condition of medicalConditionList; index as i"
+        >
+          <div class="col-auto mt-2">
+            <label for="opt-medical-principal-{{ condition.id }}">
+              <input
+                type="radio"
+                id="opt-medical-principal-{{ condition.id }}"
+                name="principalMedicalConditionId"
+                formControlName="principalMedicalConditionId"
+                value="{{ condition.id }}"
+              />
+              <div class="btn btn-outline-primary">{{ condition.name }}</div>
+            </label>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-start mt-2">
+      <div class="col-auto col-form-label">
+        Qué síntomas ha tenido o tiene
+        <span class="text-primary">
+          {{ localClient.getActualPet().name }}
+        </span>
+        asociadas a esta condición?
+      </div>
+
+      <div class="mt-4 container options-block row">
+        <ng-container *ngFor="let condition of medicalSymptomList; index as i">
+          <div class="col-auto mt-2">
+            <label for="opt-medical-principal-symptom-{{ i }}">
+              <input
+                type="radio"
+                id="opt-medical-principal-symptom-{{ i }}"
+                name="principalMedicalSympton"
+                formControlName="principalMedicalSympton"
+              />
+              <div class="btn btn-outline-primary">{{ condition }}</div>
+            </label>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-start mt-4">
+      <div class="col-auto col-form-label text-primary">
+        {{ localClient.getActualPet().name }}
+      </div>
+      <div class="col-auto">
+        <select
+          class="form-select"
+          formControlName="hasSecondaryMedicalCondition"
+        >
+          <option [value]="false" selected>no tiene</option>
+          <option [value]="true">tiene</option>
+        </select>
+      </div>
+      <div class="col-auto col-form-label">
+        una condición médica diagnósticada adicional
+      </div>
+    </div>
+
+    <ng-container
+      *ngIf="localClient.getActualPet().hasSecondaryMedicalCondition"
+    >
+      <div class="row g-3 align-items-start mt-2">
+        <div class="col-auto col-form-label">
+          Cuál es la condición médica secundaria diagnósticada en
+          <span class="text-primary">
+            {{ localClient.getActualPet().name }}</span
+          >?
+        </div>
+
+        <div class="mt-4 container options-block row">
+          <ng-container
+            *ngFor="let condition of medicalConditionList; index as i"
+          >
+            <div class="col-auto mt-2">
+              <label for="opt-medical-secundary-{{ condition.id }}">
+                <input
+                  type="radio"
+                  id="opt-medical-secundary-{{ condition.id }}"
+                  name="secondaryMedicalConditionId"
+                  formControlName="secondaryMedicalConditionId"
+                />
+                <div class="btn btn-outline-primary">{{ condition.name }}</div>
+              </label>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="row g-3 align-items-start mt-2">
+        <div class="col-auto col-form-label">
+          Qué síntomas ha tenido o tiene
+          <span class="text-primary">
+            {{ localClient.getActualPet().name }}
+          </span>
+          asociadas a esta condición?
+        </div>
+
+        <div class="mt-4 container options-block row">
+          <ng-container
+            *ngFor="let condition of medicalSymptomList; index as i"
+          >
+            <div class="col-auto mt-2">
+              <label for="opt-medical-secundary-symptom-{{ i }}">
+                <input
+                  type="radio"
+                  id="opt-medical-secundary-symptom-{{ i }}"
+                  name="secondaryMedicalSympton"
+                  formControlName="secondaryMedicalSympton"
+                />
+                <div class="btn btn-outline-primary">{{ condition }}</div>
+              </label>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <button
+        class="btn btn-primary rounded-pill py-3 px-3 mt-5"
+        (click)="nextStep()"
+      >
+        <div class="display-inline">
+          Siguiente
+          <img src="assets/icons/paw.svg" width="20px" height="20px" />
+        </div>
+      </button>
+    </div>
+  </div>
+</form>

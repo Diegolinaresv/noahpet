@@ -1,0 +1,383 @@
+/* You can add global styles to this file, and also import other style files */
+$enable-negative-margins: true;
+$primary: #ee763c;
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+// regular style toast
+@import "~ngx-toastr/toastr";
+
+.ng-select {
+  min-width: 150px;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:disabled,
+.btn-primary:focus {
+  color: white;
+}
+
+@font-face {
+  font-family: "Champagne";
+  src: local("Champagne"), url(./assets/fonts/champagne.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "noah";
+  src: url("./assets/fonts/noah/noah.eot");
+  src: url("./assets/fonts/noah/noah.eot?#iefix") format("embedded-opentype"),
+    url("./assets/fonts/noah/noah.woff") format("woff"),
+    url("./assets/fonts/noah/noah.ttf") format("truetype"),
+    url("./assets/fonts/noah/noah.svg#noah") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class*="icon-"]:before {
+  display: inline-block;
+  font-family: "noah";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-paw:before {
+  content: "\0041";
+}
+
+* {
+  font-family: "Champagne", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+.form-control {
+  border-color: $primary;
+  border: none;
+  border-bottom: 2px solid $primary;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: none;
+  border: none;
+  border-bottom: 2px dotted $primary;
+  box-shadow: none;
+}
+
+.form-select:focus {
+  box-shadow: none;
+}
+
+//Stepper
+
+.stepper-wrapper {
+  overflow: auto;
+  font-family: Arial;
+  display: flex;
+  justify-content: space-between;
+}
+.stepper-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+
+  @media (max-width: 768px) {
+    font-size: 12px !important;
+  }
+}
+
+.stepper-item::before {
+  position: absolute;
+  content: "";
+  border-bottom: 2px solid #ccc;
+  width: 100%;
+  top: 10px;
+  left: -50%;
+  z-index: 2;
+}
+
+.stepper-item::after {
+  position: absolute;
+  content: "";
+  border-bottom: 2px solid #ccc;
+  width: 100%;
+  top: 10px;
+  left: 50%;
+  z-index: 2;
+}
+
+.stepper-item .step-counter {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ccc;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.stepper-item .step-name {
+  text-align: center;
+  padding: 5px;
+}
+
+.stepper-item.active {
+  font-weight: bold;
+}
+
+.stepper-item.completed .step-counter {
+  background-color: $primary;
+}
+
+.stepper-item.completed::after {
+  position: absolute;
+  content: "";
+  border-bottom: 2px solid $primary;
+  width: 100%;
+  top: 10px;
+  left: 50%;
+  z-index: 3;
+}
+
+.stepper-item:first-child::before {
+  content: none;
+}
+.stepper-item:last-child::after {
+  content: none;
+}
+
+// Selector
+
+.selector-wrapper {
+  font-family: Arial;
+  display: flex;
+  justify-content: space-between;
+}
+.selector-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  margin-inline: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+.selector-item::before {
+  position: absolute;
+  content: "";
+  border-bottom: 2px solid #ccc;
+  width: 100%;
+  bottom: 15px;
+  left: -50%;
+  z-index: 2;
+}
+
+.selector-item::after {
+  position: absolute;
+  content: "";
+  border-bottom: 2px solid #ccc;
+  width: 100%;
+  bottom: 15px;
+  left: 50%;
+  z-index: 2;
+}
+
+.selector-item .step-counter {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ccc;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.selector-item.active {
+  font-weight: bold;
+}
+
+.selector-item.active .step-counter {
+  background-color: $primary;
+}
+
+.selector-item:first-child::before {
+  content: none;
+}
+
+.selector-item:last-child::after {
+  content: none;
+}
+
+.options-block input[type="checkbox"]:checked + div.btn.btn-outline-primary,
+.options-block input[type="radio"]:checked + div.btn.btn-outline-primary {
+  background-color: $primary;
+  color: white;
+}
+
+.options-block input[type="checkbox"] {
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+}
+
+.options-block input[type="radio"] {
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+}
+
+.btn-outline-primary:hover {
+  color: white;
+}
+
+//RADIO
+
+.FormRow .RadioGroup {
+  line-height: 1.15;
+}
+
+.RadioGroup-options {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.RadioGroup-options .RadioGroup-option {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  cursor: pointer;
+}
+
+.RadioGroup-options .RadioGroup-option.focus {
+  outline: solid 2px rgba(0, 103, 244, 0.247);
+  outline: auto 5px -webkit-focus-ring-color;
+}
+
+.RadioGroup-options input {
+  position: absolute;
+  height: 1px;
+  opacity: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.RadioGroup-label {
+  position: relative;
+  display: block;
+  margin-top: 20px;
+  padding-top: 10px;
+  color: #969799;
+  text-align: center;
+  -webkit-transition: color 300ms ease-in-out;
+  -o-transition: color 300ms ease-in-out;
+  transition: color 300ms ease-in-out;
+}
+
+.RadioGroup-option:hover .RadioGroup-label,
+input:checked ~ .RadioGroup-label {
+  color: #4b4f54;
+}
+
+.RadioGroup-label:after {
+  position: absolute;
+  top: -10px;
+  left: calc(50% - 8px);
+  display: block;
+  width: 13px;
+  height: 13px;
+  border: 2px solid #edeff2;
+  background: #fff;
+  border-radius: 13px;
+  content: "";
+}
+
+input:checked ~ .RadioGroup-label:after {
+  border-color: #fff;
+  background-color: #f59078;
+}
+
+.RadioGroup-label:before {
+  position: absolute;
+  top: -5px;
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #edeff2;
+  content: "";
+}
+
+.RadioGroup-option:first-child .RadioGroup-label:before {
+  left: 50%;
+  width: 50%;
+}
+
+.RadioGroup-option:last-child .RadioGroup-label:before {
+  width: 50%;
+}
+
+.RadioGroup-description {
+  display: block;
+  margin-top: 5px;
+  padding: 0 10px;
+  color: #f2674b;
+  text-align: center;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.RadioGroup-icon {
+  text-align: center;
+
+  padding-top: 0.25rem;
+  opacity: 0.5;
+  -webkit-transition: opacity 300ms ease-in-out;
+  -o-transition: opacity 300ms ease-in-out;
+  transition: opacity 300ms ease-in-out;
+}
+
+.RadioGroup-icon img {
+  pointer-events: none;
+}
+
+.RadioGroup-option:hover .RadioGroup-icon,
+input:checked ~ .RadioGroup-icon {
+  opacity: 1;
+}

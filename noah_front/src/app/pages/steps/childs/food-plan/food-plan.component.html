@@ -1,0 +1,128 @@
+<ng-container *ngIf="dietResult.length > 0">
+  <ul ngbNav #nav="ngbNav" class="nav-pills justify-content-center">
+    <li
+      ngbNavItem
+      *ngFor="let pet of dietResult; let i = index; let first = first"
+    >
+      <a ngbNavLink>{{ pet.name }}</a>
+      <ng-template ngbNavContent>
+        <div class="row g-3 justify-content-center mt-2">
+          <div class="col-auto col-form-label">
+            <span class="text-primary">{{ pet.name }}</span>
+            necesita consumir {{ pet.gPerDay }} gramos diariamente de su dieta
+            100% natural
+          </div>
+        </div>
+
+        <div class="row g-3 justify-content-center mt-2">
+          <div class="col-auto col-form-label">
+            Escoge la opción 100% natural para una dieta totalmente saludable y
+            balanceada. Escoge la opción Mix si deseas mezclarla con su dieta
+            actual
+          </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+          <div class="mt-4 container options-block row gx-5">
+            <div class="col-6 mt-2">
+              <div
+                class="py-2 px-2 border border-primary rounded bg-primary row"
+              >
+                <div class="col-8">
+                  <h4>Full Plan</h4>
+                  <p class="text-white">Lorem ipsum dolor sit amet</p>
+                  <p class="text-white">Lorem ipsum dolor sit amet</p>
+                  <h4>$220.000</h4>
+                </div>
+                <div class="col-4">
+                  <img
+                    src="assets/images/dog-food/plan-image.png"
+                    width="100%"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-6 mt-2">
+              <div class="py-2 px-2 border border-primary rounded row">
+                <div class="col-8">
+                  <h4>Full Plan</h4>
+                  <p>Lorem ipsum dolor sit amet</p>
+                  <p>Lorem ipsum dolor sit amet</p>
+                  <h4>$220.000</h4>
+                </div>
+                <div class="col-4">
+                  <img
+                    src="assets/images/dog-food/plan-image.png"
+                    width="100%"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="row g-3 justify-content-center mt-2">
+          <div class="col-auto col-form-label">
+            <span class="text-primary">{{ pet.name }}</span>
+            necesita consumir 380 gramos diariamente de su dieta 100% natural
+          </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+          <div class="mt-4 container options-block row gx-5">
+            <div class="col-6 mt-2">
+              <div
+                class="py-2 px-2 border border-primary rounded bg-primary row"
+              >
+                <div class="col-8">
+                  <h4>Full Plan</h4>
+                  <p class="text-white">Lorem ipsum dolor sit amet</p>
+                  <p class="text-white">Lorem ipsum dolor sit amet</p>
+                  <h4>$220.000</h4>
+                </div>
+                <div class="col-4">
+                  <img
+                    src="assets/images/dog-food/plan-image.png"
+                    width="100%"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-6 mt-2">
+              <div class="py-2 px-2 border border-primary rounded row">
+                <div class="col-8">
+                  <h4>Full Plan</h4>
+                  <p>Lorem ipsum dolor sit amet</p>
+                  <p>Lorem ipsum dolor sit amet</p>
+                  <h4>$220.000</h4>
+                </div>
+                <div class="col-4">
+                  <img
+                    src="assets/images/dog-food/plan-image.png"
+                    width="100%"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </ng-template>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav"></div>
+
+  <ng-container *ngFor="let pet of localClient.donePets"> </ng-container>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <button
+        class="btn btn-primary rounded-pill py-3 px-3 mt-5"
+        (click)="nextStep()"
+      >
+        <div class="display-inline">
+          Siguiente
+          <img src="assets/icons/paw.svg" width="20px" height="20px" />
+        </div>
+      </button>
+    </div>
+  </div>
+</ng-container>

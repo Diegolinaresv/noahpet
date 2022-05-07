@@ -1,0 +1,11 @@
+<nav
+  class="navbar navbar-light bg-white border-bottom"
+  [class.sticky-top]="isSticky"
+>
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="assets/images/logo-normal.png" alt="" height="60" />
+    </a>
+    <app-stepper *ngIf="showStepper" class="flex-grow-1"></app-stepper>
+  </div>
+</nav>

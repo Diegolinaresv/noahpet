@@ -1,0 +1,291 @@
+<div class="container col-11">
+  <h3 class="mt-2 text-center">
+    Hola
+    <h3 class="text-primary d-inline">{{ localClient.name }}</h3>
+    . Ahora cuéntanos de tu mascota.
+  </h3>
+
+  <form [formGroup]="petForm" class="mt-5">
+    <div class="row g-3 align-items-start">
+      <div class="col-auto col-form-label">Mi mascota se llama</div>
+      <div class="col-auto">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="name"
+          placeholder="Noah"
+          required
+        />
+      </div>
+      <div class="col-auto col-form-label">, y es un</div>
+      <div class="col-auto">
+        <select class="form-select" formControlName="type">
+          <option value="{{ PetType.Dog }}" selected>
+            {{ petTypeText(PetType.Dog) }}
+          </option>
+          <option value="{{ PetType.Cat }}">
+            {{ petTypeText(PetType.Cat) }}
+          </option>
+          <option value="{{ PetType.Other }}">
+            {{ petTypeText(PetType.Other) }}
+          </option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <select class="form-select" formControlName="gender">
+          <option value="{{ PetGender.Male }}">
+            {{ genderText(PetGender.Male) }}
+          </option>
+          <option value="{{ PetGender.Female }}" selected>
+            {{ genderText(PetGender.Female) }}
+          </option>
+        </select>
+      </div>
+      <div class="col-auto col-form-label">tiene</div>
+      <div class="col-auto">
+        <input
+          type="number"
+          class="form-control"
+          formControlName="age"
+          required
+        />
+      </div>
+      <div class="col-auto col-form-label">años. Su fecha de cumpleaños es</div>
+      <div class="col-auto">
+        <input
+          type="month"
+          class="form-control"
+          required
+          formControlName="birthday"
+        />
+      </div>
+      <div class="col-auto col-form-label">
+        {{ genderText(localClient.getActualPet().gender) }}
+      </div>
+      <div class="col-auto">
+        <select class="form-select" formControlName="sterilized">
+          <ng-container
+            *ngIf="localClient.getActualPet().gender == PetGender.Female"
+          >
+            <option value="{{ PetSterilized.IsSterilizedFemale }}" selected>
+              {{ PetSterilized.IsSterilizedFemale }}
+            </option>
+            <option value="{{ PetSterilized.IsNotSterilizedMale }}">
+              {{ PetSterilized.IsNotSterilizedFemale }}
+            </option>
+          </ng-container>
+
+          <ng-container
+            *ngIf="localClient.getActualPet().gender == PetGender.Male"
+          >
+            <option value="{{ PetSterilized.IsSterilizedMale }}" selected>
+              {{ PetSterilized.IsSterilizedMale }}
+            </option>
+            <option value="{{ PetSterilized.IsNotSterilizedMale }}">
+              {{ PetSterilized.IsNotSterilizedMale }}
+            </option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="col-auto col-form-label">y pesa</div>
+      <div class="col-auto">
+        <input
+          type="number"
+          class="form-control"
+          required
+          placeholder="0"
+          formControlName="weight"
+        />
+      </div>
+      <div class="col-auto col-form-label">kilos es un</div>
+      <div class="col-auto">
+        <select class="form-select" formControlName="breedId">
+          <option [value]="null" selected>Seleccione una opción</option>
+          <ng-container *ngFor="let race of clientBreeds; let first = first">
+            <option value="{{ race.id }}" [selected]="first">
+              {{ race.name }}
+            </option>
+          </ng-container>
+        </select>
+      </div>
+    </div>
+    <div class="my-5">
+      La contextura física de
+      <div class="text-primary d-inline">
+        {{ localClient.getActualPet().name }}
+      </div>
+      es:
+    </div>
+    <div class="RadioGroup my-5">
+      <div class="RadioGroup-options">
+        <ng-container *ngFor="let texture of clientTexture; let first = first">
+          <label for="texture-{{ texture.id }}" class="RadioGroup-option"
+            ><input
+              name="textureId"
+              formControlName="textureId"
+              id="texture-{{ texture.id }}"
+              type="radio"
+              value="{{ texture.id }}"
+            />
+            <div class="RadioGroup-icon">
+              <img
+                alt="{{ texture.name }}"
+                src="assets/images/dog-weight/{{ texture.image }}"
+                style="padding: 0px 10%; max-height: 100px"
+              />
+            </div>
+            <span class="RadioGroup-label">{{ texture.name }}</span></label
+          >
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-start my-5">
+      <div class="col-auto col-form-label">Su peso ideal deberia ser</div>
+      <div class="col-auto">
+        <input
+          type="number"
+          class="form-control"
+          required
+          placeholder="0"
+          formControlName="idealWeight"
+        />
+      </div>
+      <div class="col-auto col-form-label">kilos</div>
+    </div>
+
+    <div class="my-5">Su nivel de actividad física en un día es:</div>
+
+    <div class="RadioGroup-options">
+      <ng-container
+        *ngFor="let activity of clientActivityLevel; let first = first"
+      >
+        <label for="bodyCondition-{{ activity.id }}" class="RadioGroup-option">
+          <input
+            name="activityLevelId"
+            formControlName="activityLevelId"
+            id="bodyCondition-{{ activity.id }}"
+            type="radio"
+            value="{{ activity.id }}"
+          />
+          <div class="RadioGroup-icon">
+            <img
+              alt="Poco Activa"
+              src="assets/images/dog-activity/{{ activity.image }}"
+              style="padding: 0px 10%; max-height: 100px"
+            />
+          </div>
+          <span class="RadioGroup-label">{{ activity.name }}</span></label
+        >
+      </ng-container>
+    </div>
+
+    <div class="row g-3 align-items-start mt-3">
+      <div class="col-auto col-form-label">
+        Por lo general creó que el estilo de comer de
+        <div class="text-primary d-inline">
+          {{ localClient.getActualPet().name }}
+        </div>
+        es:
+      </div>
+      <div class="col-auto">
+        <select class="form-select" formControlName="eatStyle">
+          <option [value]="null" selected>Seleccione una opción</option>
+          <option value="Normal" selected>Normal</option>
+          <option value="Malo">Malo</option>
+          <option value="Bueno">Bueno</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-start mt-2">
+      <div class="col-auto col-form-label">
+        Actualmente
+        <div class="text-primary d-inline">
+          {{ localClient.getActualPet().name }}
+        </div>
+        come
+      </div>
+      <div class="col-auto">
+        <select class="form-select" formControlName="foodType">
+          <option [value]="null" selected>Seleccione una opción</option>
+          <option value="concentrado" selected>Concentrado</option>
+          <option value="sobras">Sobras</option>
+        </select>
+      </div>
+      <div class="col-auto col-form-label">de la marca</div>
+      <div class="col-auto">
+        <input
+          type="text"
+          class="form-control"
+          required
+          placeholder="Chow"
+          formControlName="foodBranch"
+        />
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-start mt-2">
+      <div class="col-auto col-form-label">
+        Generalmente suelo darle de comer
+      </div>
+      <div class="col-auto">
+        <input
+          type="number"
+          class="form-control"
+          required
+          placeholder="3"
+          formControlName="nFeedTimes"
+        />
+      </div>
+      <div class="col-auto col-form-label">veces al día y</div>
+      <div class="col-auto">
+        <select class="form-select" formControlName="snackingId">
+          <option [value]="null" selected>Seleccione una opción</option>
+          <ng-container
+            *ngFor="let snacking of clientSnacking; let first = first"
+          >
+            <option value="{{ snacking.id }}">
+              {{ snacking.name }}
+            </option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="col-auto col-form-label">le comparto snacks.</div>
+    </div>
+
+    <div class="mt-5">
+      <div *ngIf="formErrors.length > 0" class="alert alert-danger">
+        <div *ngFor="let error of formErrors">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <app-paw-button
+          text="Siguiente"
+          [disabled]="petForm.invalid"
+          (click)="nextStep()"
+          type="submit"
+        ></app-paw-button>
+      </div>
+    </div>
+
+    <!-- <div class="row justify-content-center">
+      <div class="col-auto">
+        <button
+          class="btn btn-primary rounded-pill py-3 px-3 mt-5"
+          [disabled]="petForm.invalid"
+          (click)="nextStep()"
+        >
+          <div class="display-inline">
+            Siguiente
+            <img src="assets/icons/paw.svg" width="20px" height="20px" />
+          </div>
+        </button>
+      </div>
+    </div> -->
+  </form>
+</div>

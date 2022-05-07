@@ -1,0 +1,49 @@
+<div class="row g-3 justify-content-center mt-2">
+  <div class="col-auto col-form-label">
+    Perfecto, hemos terminado de recoger la información de
+    <span class="text-primary">{{ localClient.getActualPet().name }}</span>
+  </div>
+</div>
+<div class="row g-3 justify-content-center mt-2">
+  <div class="col-auto col-form-label">
+    Tienes otra mascota a la que quieras consentir con un producto
+    especificamente para ella?
+  </div>
+</div>
+
+<div class="row g-3 justify-content-center mt-2">
+  <div class="mt-4 container options-block row justify-content-center">
+    <div class="col-auto mt-2">
+      <label for="si">
+        <input type="radio" id="si" name="amount" (change)="changeBool(true)" />
+        <div class="btn btn-outline-primary">Si</div>
+      </label>
+    </div>
+    <div class="col-auto mt-2">
+      <label for="no">
+        <input
+          type="radio"
+          id="no"
+          name="amount"
+          checked
+          (change)="changeBool(false)"
+        />
+        <div class="btn btn-outline-primary">No</div>
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-auto">
+    <button
+      class="btn btn-primary rounded-pill py-3 px-3 mt-5"
+      (click)="nextStep()"
+    >
+      <div class="display-inline">
+        Siguiente
+        <img src="assets/icons/paw.svg" width="20px" height="20px" />
+      </div>
+    </button>
+  </div>
+</div>

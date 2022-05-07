@@ -1,0 +1,106 @@
+<ng-container *ngIf="petFood.length > 0">
+  <ul ngbNav #nav="ngbNav" class="nav-pills justify-content-center">
+    <li
+      ngbNavItem
+      *ngFor="let pet of petFood; let i = index; let first = first"
+    >
+      <a ngbNavLink>{{ pet.name }}</a>
+      <ng-template ngbNavContent
+        ><div class="row g-3 text-center mt-5">
+          <h3>
+            Teniendo en cuenta la información entregada, diseñamos varias
+            opciones perfectas para
+            <h3 class="d-inline text-primary">{{ pet.name }}.</h3>
+          </h3>
+        </div>
+
+        <div class="row g-3 text-center mt-2">
+          <h3>Selecciona la que más te guste</h3>
+        </div>
+
+        <div class="row g-3 justify-content-center mt-5">
+          <div class="col-auto h3 text-primary">Alimento</div>
+        </div>
+
+        <div class="row g-3 justify-content-center mt-2">
+          <div class="mt-4 container options-block row justify-content-center">
+            <ng-container *ngFor="let food of pet.food; index as i">
+              <div class="col-4 mt-2">
+                <div
+                  class="py-2 px-2 border border-primary rounded"
+                  [class.bg-primary]="petHasFood(pet.id, food.id)"
+                >
+                  <div class="col-12 text-center">
+                    <img
+                      src="assets/images/dog-food/cuidado-rig-carne.png"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <div class="row">
+                    <div class="col text-center">
+                      <button
+                        class="btn btn-primary rounded-pill py-3 px-3 mt-5"
+                        (click)="setPetFood(pet.id, food.id)"
+                      >
+                        {{ food.name }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <div
+          class="row g-3 justify-content-center mt-5"
+          *ngIf="pet.supplement.length > 0"
+        >
+          <div class="col-auto h3 text-primary">Suplemento</div>
+        </div>
+
+        <div class="row g-3 justify-content-center mt-2">
+          <div class="mt-4 container options-block row justify-content-center">
+            <ng-container *ngFor="let food of pet.supplement; index as i">
+              <div class="col-4 mt-2">
+                <div
+                  class="py-2 px-2 border border-primary rounded"
+                  [class.bg-primary]="petHasFoodSupplement(pet.id, food.id)"
+                >
+                  <div class="col-12 text-center">
+                    <img src="{{ food.image }}" class="img-fluid" />
+                  </div>
+                  <div class="row">
+                    <div class="col text-center">
+                      <button
+                        class="btn btn-primary rounded-pill py-3 px-3 mt-5"
+                        (click)="setPetFoodSupplement(pet.id, food.id)"
+                      >
+                        {{ food.name }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-template>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav"></div>
+
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <button
+        class="btn btn-primary rounded-pill py-3 px-3 mt-5"
+        (click)="nextStep()"
+      >
+        <div class="display-inline">
+          Siguiente
+          <img src="assets/icons/paw.svg" width="20px" height="20px" />
+        </div>
+      </button>
+    </div>
+  </div>
+</ng-container>
